@@ -2,14 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Main Menu Actions', type: :feature do
   before :each do
-    User.create({:email => "john@gmail.com", :name => ["John"], :password => "john1234", :password_confirmation => "john1234" })
-    expect(User.all.count).to eq(1)
+    User.create(email: 'john@gmail.com', name: 'John', password: 'john1234', password_confirmation: 'john1234')
   end
-
-  # it 'creates a user' do
-  #   User.create({:email => "john@john.com", :name => ["John"], :password => "a123456", :password_confirmation => "a123456" })
-  #   expect(User.all.count).to eq(1)
-  # end
 
   it 'Signs up' do
     visit '/users/sign_up'
@@ -20,16 +14,6 @@ RSpec.describe 'Main Menu Actions', type: :feature do
     click_button 'Sign up'
     expect(page).to have_content('Welcome! You have signed up successfully.')
   end
-
-  # it 'finds text content \'You have signed up successfully\' after Signing up' do
-  #   visit '/users/sign_up'
-  #   fill_in 'user_name', with: 'John-john'
-  #   fill_in 'user_email', with: 'john@gmail.com'
-  #   fill_in 'user_password', with: 'john1234'
-  #   fill_in 'user_password_confirmation', with: 'john1234'
-  #   click_button 'Sign up'
-  #   expect(page).to have_content('You have signed up successfully')
-  # end
 
   it 'Finds text content \'Forgot your password?\' in the login page' do
     visit '/users/sign_in'
@@ -44,5 +28,4 @@ RSpec.describe 'Main Menu Actions', type: :feature do
     sleep(2)
     expect(page).to have_content('Signed in successfully')
   end
-  
 end
