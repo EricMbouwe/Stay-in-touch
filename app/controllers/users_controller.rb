@@ -20,6 +20,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.ordered_by_most_recent
+    @my_friends = Post.my_friends(@user)
+
     @status = nil
     fr = Friendship.find_by(user_id: current_user.id, friend_id: @user.id)
     if fr 
