@@ -6,6 +6,27 @@
         <span class="profile-link">
           <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
         </span>
+        <% case user.outer_status  %>
+        <% when 1 %>
+          <span>
+            <%= 'Friends' %>
+          </span>
+        <% when -1 %>
+          <span>
+            <%= 'Rejected Friendship' %>
+          </span>
+        <% when 0 %>
+          <span>
+            <%= link_to 'Accept', friendship_path(id: user.id, accept: true ), method: :patch, class: 'profile-link' %>
+          </span>
+          <span>
+            <%= link_to 'Reject', friendship_path(id: user.id, accept: false ), method: :patch, class: 'profile-link' %>
+          </span>
+        <% else %>
+          <span>
+            <%= link_to 'Invite',  friendships_path(user), method: :post, class: 'profile-link' %>
+          </span>
+        <% end %>
       </li>
     <% end %>
   </ul>
