@@ -2,32 +2,52 @@
   <ul class="users-list">
     <% @users.each do |user| %>
       <li>
-        Name: <%= user.name %>
+        <span class="user-name">
+          <%= user.name %>
+        </span>
         <span class="profile-link">
           <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
         </span>
-        <% case user.outer_status  %>
-        <% when 1 %>
-          <span>
-            <%= 'Friends' %>
-          </span>
-        <% when -1 %>
-          <span>
-            <%= 'Rejected Friendship' %>
-          </span>
-        <% when 0 %>
-          <span>
-            <%= link_to 'Accept', friendship_path(id: user.id, accept: true ), method: :patch, class: 'profile-link' %>
-          </span>
-          <span>
-            <%= link_to 'Reject', friendship_path(id: user.id, accept: false ), method: :patch, class: 'profile-link' %>
-          </span>
-        <% else %>
-          <span>
-            <%= link_to 'Invite',  friendships_path(user), method: :post, class: 'profile-link' %>
-          </span>
+        <% unless user == current_user %>
+          <% case user.outer_status  %>
+            <% when 1 %>
+              <span class="friends">
+                <%= 'Friends' %>
+              </span>
+            <% when -1 %>
+              <span class="reject">
+                <%= 'I Rejected Friendship' %>
+              </span>
+            <% when 0 %>
+              <span>
+                <%= link_to 'Accept', friendship_path(id: user.id, accept: true, caller: 'index' ), method: :patch, class: 'profile-link accept' %>
+              </span>
+              <span>
+                <%= link_to 'Reject', friendship_path(id: user.id, accept: false, caller: 'index' ), method: :patch, class: 'profile-link reject' %>
+              </span>
+            <% else %>
+              <% case user.inner_status %>
+                <% when 1 %>
+                  <span class="friends"> 
+                    <%= 'Friends' %>
+                  </span>
+                <% when -1 %>
+                  <span class="reject">
+                    <%= 'User Rejected Friendship' %>
+                  </span>
+                <% when 0 %>
+                  <span class="pending">
+                    <%= 'Pending' %>
+                  </span>
+                <% else %>
+                  <span>
+                    <%= link_to 'Invite',  friendships_path(user, caller: 'index'), method: :post, class: 'profile-link' %>
+                  </span>
+              <% end %>
+          <% end %>
         <% end %>
       </li>
     <% end %>
   </ul>
 </section>
+ 

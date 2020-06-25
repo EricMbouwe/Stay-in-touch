@@ -5,6 +5,10 @@ $primary-color: #8bc34a;
 $primary-color-light: #dcedc8;
 $primary-color-text: #212121;
 $divider-color: #bdbdbd;
+$accept-color: #173b9e;
+$reject-color: #bb0e0e;
+$pending-color: #045e26;
+$friends-color: #0d81a5;
 
 * {
   margin: 0;
@@ -283,12 +287,39 @@ form {
     margin-bottom: 16px;
     text-transform: capitalize;
     font-size: 1.2em;
+    border-bottom: 1px solid;
+  }
+  
+  .user-name {
+    display: inline-block;
+    width: 100px;
+    margin: 0;
   }
 
   .profile-link {
-    font-size: 0.8em;
-    margin: 0 0 8px 0;
+    font-size: 0.9em;
+    margin: 0 0 0 0;
     color: $primary-color-dark;
+    display: inline-block;
+    width: 100px;
+    padding-bottom: 6px;
+  }
+
+  .accept {
+    color: $accept-color;
+  }
+
+  .reject {
+    color: $reject-color;
+  }
+
+  .pending {
+    color: $pending-color;
+  }
+
+  .friends {
+    font-size: 0.9em;
+    color: $friends-color;
   }
 }
 
@@ -348,7 +379,12 @@ form {
   }
 }
 
-span {
-  margin-left: 20px;
-  margin-right: 20px;
+// span {
+//   margin-left: 20px;
+//   margin-right: 20px;
+// }
+
+.user-invitation {
+  display: block;
+  float: right;
 }

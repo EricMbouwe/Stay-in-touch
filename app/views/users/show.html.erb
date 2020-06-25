@@ -1,5 +1,19 @@
 <section class="user-section">
-  <h2><%= "Name: #{@user.name}" %></h2>
+  <h2>
+    <%= "Name: #{@user.name}" %> 
+    <% unless @user == current_user %>
+      <span class="user-invitation">
+        <% if @status.nil? %>
+          <%= link_to 'Invite',  friendships_path(@user, caller: 'show'), method: :post, class: 'profile-link' %>
+        <% elsif @status == 'Deciding' %>
+          <%= link_to 'Accept', friendship_path(id: @user.id, accept: true, caller: 'show' ), method: :patch, class: 'profile-link accept' %>
+          <%= link_to 'Reject', friendship_path(id: @user.id, accept: false, caller: 'show' ), method: :patch, class: 'profile-link reject' %>
+        <% else %>
+          <%= @status %>
+        <% end %>
+      </span>
+    <% end %>
+  </h2>
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
