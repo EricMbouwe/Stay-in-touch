@@ -14,9 +14,25 @@ class User < ApplicationRecord
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :buddies, class_name: 'User', foreign_key: 'friend_id', source: :user, through: :friendships
 
+  # scope :my_friends, ->(user) { where (' ? = true '), is_a_friend(:id, user) }
+
   def friends
-    friends_array = friendships.map { |f| f.friend if f.confirmed }
-    friends_array += inverse_friendships.map { |f| f.user if f.confirmed }
+    friends_array = friendships.map { |f| f.friend if f.status == 1 }
+    friends_array += inverse_friendships.map { |f| f.user if f.status == 1 }
+    friends_array.compact
+  end
+
+  def friends_and_myself
+    friends_array = [User.find(self.id)]
+    friends_array += friendships.map { |f| f.friend if f.status == 1 }
+    friends_array += inverse_friendships.map { |f| f.user if f.status == 1 }
+    friends_array.compact
+  end
+
+  def friends_and_myself_ids
+    friends_array = [self.id]
+    friends_array += friendships.map { |f| f.friend_id if f.status == 1 }
+    friends_array += inverse_friendships.map { |f| f.user_id if f.status == 1 }
     friends_array.compact
   end
 
@@ -39,4 +55,16 @@ class User < ApplicationRecord
   def friend?(user)
     friends.include?(user)
   end
+
+  # def self.is_a_friend(id, user)
+
+  #   fr = Friendship.find_by(user_id: user.id, friend_id: id, status: 1)
+  #   return true if fr
+
+  #   fr = Friendship.find_by(user_id: id, friend_id: user.id, status: 1)
+  #   return true if fr
+
+  #   false
+  # end
+
 end

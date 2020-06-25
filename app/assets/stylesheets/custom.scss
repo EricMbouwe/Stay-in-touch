@@ -388,3 +388,9 @@ form {
   display: block;
   float: right;
 }
+
+.friends-div,
+.friends-div * {
+  width: 100%;
+  text-align: left;
+}

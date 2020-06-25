@@ -20,8 +20,15 @@
       <%= render @posts %>
     </ul>
   </article>
+
+  <div class="friends-div">
+    <h2>Friends</h2>
+    <% @friends.each do |f| %>
+      <p>
+      <%= link_to f.name, user_path(f.id) %>
+      </p>
+    <% end %>
+  </div>
 </section>
 
-<%= @my_friends.each do |f| %>
-  <%= f.name %>
-<% end %>
+

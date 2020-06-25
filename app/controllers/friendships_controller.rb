@@ -9,8 +9,6 @@ class FriendshipsController < ApplicationController
     friendship.status = accept ? 1 : -1
     friendship.save
 
-    # flash.notice = params
-
     redirect_to users_path if caller == 'index'
     redirect_to user_path(user_id) if caller == 'show'
 
@@ -20,7 +18,6 @@ class FriendshipsController < ApplicationController
     user_id = params[:format]
     user = User.find(user_id)
     caller = params[:caller]
-    # flash.notice = params
 
     fr = current_user.friendships.create(friend_id: user_id)
     
