@@ -137,9 +137,20 @@ The project creates a database which holds 5 tables:
 
 - New users must sign up and give a name, an email and a password  
 - Using their email and password they can log in  
-- A logged in user can create posts and invite other users for friendship  
+- A logged in user can create posts and invite other users for friendship
 - Invitations can be accepted or rejected by the user who is invited  
-- The Timeline shows Posts created by the user or their friends  
+- In the User Index (**All Users**), all users are shown together with their friendship invitation status  
+  - If some one has invited the current user then an **Accept** and a **Reject** buttons are shown next to that user's name 
+  - If the current user has invited someone else for friendship then a **Pending** label is shown until they accept or reject the invitation  
+  - If the current user is a friend then a **Friend** label is shown
+  - If the current user's invitation has been rejected then a **User Rejected** label is shown
+  - If the current user has rejected an invitation then a **Rejected** label is shown
+- The **User show** view shows the posts that the user has added together with 
+  - a list of their frends
+  - a list of pending invitations to other users
+  - a list of pending invitations from other users
+  - A friendship status or acceptance-rejection buttons are shown at the top-right corner
+- The **Timeline** shows Posts created by the user or their friends and the user can add comments to the posts  
 
 <hr/>
 
