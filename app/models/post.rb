@@ -7,4 +7,9 @@ class Post < ApplicationRecord
   scope :ordered_by_most_recent, -> { order(created_at: :desc) }
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+
+  def self.company_posts(user)
+    company = user.friends_and_myself_ids
+    where('user_id IN (?)', company)
+  end
 end

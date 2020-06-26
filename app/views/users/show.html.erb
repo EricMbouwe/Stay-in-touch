@@ -1,9 +1,71 @@
 <section class="user-section">
-  <h2><%= "Name: #{@user.name}" %></h2>
+  <h2>
+    <%= @user.name %> 
+    <% unless @user == current_user %>
+      <span class="user-invitation">
+        <% if @status.nil? %>
+          <%= link_to 'Invite',  friendships_path(@user, caller: 'show'), method: :post, class: 'profile-link invite' %>
+        <% elsif @status == 'Deciding' %>
+          <%= link_to 'Accept', friendship_path(id: @user.id, accept: true, caller: 'show' ), method: :patch, class: 'profile-link accept' %>
+          <%= link_to 'Reject', friendship_path(id: @user.id, accept: false, caller: 'show' ), method: :patch, class: 'profile-link reject' %>
+        <% else %>
+          <%= @status %>
+        <% end %>
+      </span>
+    <% end %>
+  </h2>
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
       <%= render @posts %>
     </ul>
   </article>
+  <hr/>
+  <%# if @friends.count.positive? %>
+    <div class="friends-div">
+      <h4>Friends : <%= @friends.count %></h4>
+      <% @friends.each do |f| %>
+        <p>
+        <% if current_user.friend_or_me?(f) %>
+          <%= link_to f.name, user_path(f.id) %>
+        <% else %>
+          <%= f.name %>
+        <% end %>
+        </p>
+      <% end %>
+    </div>
+  <%# end %>
+  <hr/>
+  <%# if @pending_friends.count.positive? %>
+    <div class="friends-div">
+      <h4>Pending Friendships : <%= @pending_friends.count %></h4>
+      <% @pending_friends.each do |f| %>
+        <p>
+        <% if current_user.friend_or_me?(f) %>
+          <%= link_to f.name, user_path(f.id) %>
+        <% else %>
+          <%= f.name %>
+        <% end %>
+        </p>
+      <% end %>
+    </div>
+  <%# end %>
+  <hr/>
+  <%# if @pending_friends.count.positive? %>
+    <div class="friends-div">
+      <h4>Friendship Requests : <%= @friend_requests.count %></h4>
+      <% @friend_requests.each do |f| %>
+        <p>
+        <% if current_user.friend_or_me?(f) %>
+          <%= link_to f.name, user_path(f.id) %>
+        <% else %>
+          <%= f.name %>
+        <% end %>
+        </p>
+      <% end %>
+    </div>
+  <%# end %>
+  <hr/>
 </section>
+
+

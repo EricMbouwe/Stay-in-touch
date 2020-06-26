@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RorSocialScaffold</title>
+    <title>Stay In Touch</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -19,6 +19,7 @@
         </div>
       </div>
       <% if current_user %>
+        <%= link_to current_user.name, user_path(current_user) %>
         <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
       <% else %>
         <%= link_to 'Sign in', user_session_path %>
@@ -34,6 +35,7 @@
         <p> <%= alert %> </p>
       </div>
     <% end %>
+
     <main class="main">
       <%= yield %>
     </main>
