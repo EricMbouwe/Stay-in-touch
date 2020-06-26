@@ -219,14 +219,14 @@ This project was built using these technologies.
 
 :bust_in_silhouette: **Author_1**
 
-​## Eric Mbouwe
+## Eric Mbouwe
 
 - Github: [@ericmbouwe](https://github.com/ericmbouwe)
 - Twitter: [@ericmbouwe](https://twitter.com/ericmbouwe)
 - Linkedin: [Eric Mbouwe](https://www.linkedin.com/in/ericmbouwe/)
 - E-mail: ericmbouwe@gmail.com
 
-:bust_in_silhouette: **Author_2**​
+:bust_in_silhouette: **Author_2**
 
 ## Ioannis Kousis
 
