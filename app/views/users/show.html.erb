@@ -1,10 +1,10 @@
 <section class="user-section">
   <h2>
-    <%= "Name: #{@user.name}" %> 
+    <%= @user.name %> 
     <% unless @user == current_user %>
       <span class="user-invitation">
         <% if @status.nil? %>
-          <%= link_to 'Invite',  friendships_path(@user, caller: 'show'), method: :post, class: 'profile-link' %>
+          <%= link_to 'Invite',  friendships_path(@user, caller: 'show'), method: :post, class: 'profile-link invite' %>
         <% elsif @status == 'Deciding' %>
           <%= link_to 'Accept', friendship_path(id: @user.id, accept: true, caller: 'show' ), method: :patch, class: 'profile-link accept' %>
           <%= link_to 'Reject', friendship_path(id: @user.id, accept: false, caller: 'show' ), method: :patch, class: 'profile-link reject' %>
@@ -21,14 +21,39 @@
     </ul>
   </article>
 
-  <div class="friends-div">
-    <h2>Friends</h2>
-    <% @friends.each do |f| %>
-      <p>
-      <%= link_to f.name, user_path(f.id) %>
-      </p>
-    <% end %>
-  </div>
+  <%# if @friends.count.positive? %>
+    <div class="friends-div">
+      <h4>Friends : <%= @friends.count %></h4>
+      <% @friends.each do |f| %>
+        <p>
+        <%= link_to f.name, user_path(f.id) %>
+        </p>
+      <% end %>
+    </div>
+  <%# end %>
+
+  <%# if @pending_friends.count.positive? %>
+    <div class="friends-div">
+      <h4>Pending Friendships : <%= @pending_friends.count %></h4>
+      <% @pending_friends.each do |f| %>
+        <p>
+        <%= link_to f.name, user_path(f.id) %>
+        </p>
+      <% end %>
+    </div>
+  <%# end %>
+
+  <%# if @pending_friends.count.positive? %>
+    <div class="friends-div">
+      <h4>Friendship Requests : <%= @friend_requests.count %></h4>
+      <% @friend_requests.each do |f| %>
+        <p>
+        <%= link_to f.name, user_path(f.id) %>
+        </p>
+      <% end %>
+    </div>
+  <%# end %>
+
 </section>
 
 

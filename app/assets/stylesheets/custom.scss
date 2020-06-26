@@ -306,21 +306,32 @@ form {
   }
 
   .accept {
+    font-size: 0.8em;
     color: $accept-color;
   }
 
   .reject {
+    font-size: 0.8em;
     color: $reject-color;
   }
 
   .pending {
+    font-size: 0.8em;
     color: $pending-color;
   }
 
   .friends {
-    font-size: 0.9em;
+    font-size: 0.8em;
     color: $friends-color;
   }
+
+  span {
+    margin-left: 20px;
+  }
+}
+
+.invite {
+  color: $primary-color;
 }
 
 .user-section {

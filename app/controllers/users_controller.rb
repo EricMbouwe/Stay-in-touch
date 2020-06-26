@@ -21,6 +21,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.ordered_by_most_recent
     @friends = @user.friends #_and_myself
+    @pending_friends = @user.pending_friends
+    @friend_requests = @user.friend_requests
 
     @status = nil
     fr = Friendship.find_by(user_id: current_user.id, friend_id: @user.id)
