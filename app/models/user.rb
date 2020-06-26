@@ -23,14 +23,14 @@ class User < ApplicationRecord
   end
 
   def friends_and_myself
-    friends_array = [User.find(self.id)]
+    friends_array = [User.find(id)]
     friends_array += friendships.map { |f| f.friend if f.status == 1 }
     friends_array += inverse_friendships.map { |f| f.user if f.status == 1 }
     friends_array.compact
   end
 
   def friends_and_myself_ids
-    friends_array = [self.id]
+    friends_array = [id]
     friends_array += friendships.map { |f| f.friend_id if f.status == 1 }
     friends_array += inverse_friendships.map { |f| f.user_id if f.status == 1 }
     friends_array.compact
@@ -38,12 +38,12 @@ class User < ApplicationRecord
 
   # Users who have yet to confirme friend requests
   def pending_friends
-    friendships.map { |f| f.friend if f.status == 0 }.compact
+    friendships.map { |f| f.friend if f.status.zero? }.compact
   end
 
   # Users who have requested to be friends
   def friend_requests
-    inverse_friendships.map { |f| f.user if f.status == 0 }.compact
+    inverse_friendships.map { |f| f.user if f.status.zero? }.compact
   end
 
   def confirm_friend(user)
@@ -66,5 +66,4 @@ class User < ApplicationRecord
 
   #   false
   # end
-
 end

@@ -1,8 +1,7 @@
 class FriendshipsController < ApplicationController
-
-  def update 
+  def update
     user_id = params[:id]
-    accept = params[:accept] == 'true' ? true : false
+    accept = params[:accept] == 'true'
     caller = params[:caller]
 
     friendship = Friendship.find_by("friend_id = #{current_user.id} AND user_id = #{user_id}")
@@ -11,7 +10,6 @@ class FriendshipsController < ApplicationController
 
     redirect_to users_path if caller == 'index'
     redirect_to user_path(user_id) if caller == 'show'
-
   end
 
   def create
@@ -19,12 +17,11 @@ class FriendshipsController < ApplicationController
     user = User.find(user_id)
     caller = params[:caller]
 
-    fr = current_user.friendships.create(friend_id: user_id)
-    
+    current_user.friendships.create(friend_id: user_id)
+
     flash.notice = current_user.name + ' invited ' + user.name
 
     redirect_to users_path if caller == 'index'
     redirect_to user_path(user_id) if caller == 'show'
   end
-
 end

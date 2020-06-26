@@ -8,22 +8,8 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  def self.is_me_or_a_friend(id, user)
-    return true if id = user.id
-
-    fr = Friendship.find_by(user_id: user.id, friend_id: id, status: 1)
-    return true if fr
-
-    fr = Friendship.find_by(user_id: id, friend_id: user.id, status: 1)
-    return true if fr
-
-    false
-  end
-
   def self.company_posts(user)
     company = user.friends_and_myself_ids
-    # self.where(company.include?(:user_id))
-    self.where('user_id IN (?)', company )
+    where('user_id IN (?)', company)
   end
-
 end
