@@ -150,7 +150,7 @@ The project creates a database which holds 5 tables:
   - a list of pending invitations to other users
   - a list of pending invitations from other users
   - A friendship status or acceptance-rejection buttons are shown at the top-right corner
-- The **Timeline** shows Posts created by the user or their friends and the user can add comments to the posts  
+- The **Timeline** shows Posts created by the user or their friends and the user can add comments to the posts and check the post they like!  
 
 <hr/>
 
