@@ -26,4 +26,29 @@ class UsersController < ApplicationController
 
     @status = get_friendships_status(current_user.id, @user.id)
   end
+
+  private
+
+  def get_friendships_status(id1, id2)
+    status = nil
+    fr = Friendship.find_by(user_id: id1, friend_id: id2)
+    if fr
+      status = 'Pending' if fr.status.zero?
+      status = 'Friends' if fr.status == 1
+      status = @user.name + ' Rejected Friendship' if fr.status == -1
+    else
+      status = get_friendships_status_inverse(id1, id2)
+    end
+    status
+  end
+
+  def get_friendships_status_inverse(id1, id2)
+    fr = Friendship.find_by(user_id: id2, friend_id: id1)
+    if fr
+      status = 'Deciding' if fr.status.zero?
+      status = 'Friends' if fr.status == 1
+      status = 'I Rejected Friendship' if fr.status == -1
+    end
+    status
+  end
 end

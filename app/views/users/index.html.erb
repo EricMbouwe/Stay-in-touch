@@ -3,10 +3,14 @@
     <% @users.each do |user| %>
       <li>
         <span class="user-name">
-          <%= link_to user.name, session_path(user) %>
+          <%= user.name %>
         </span>
         <span class="profile-link">
-          <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
+          <% if current_user.friend?(user) %>
+            <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
+          <% else %>
+            <p class="profile-link gray">See Profile</p>
+          <% end %>
         </span>
 
         <% ft = friendship_state(user, user.outer_status, user.inner_status) %>
