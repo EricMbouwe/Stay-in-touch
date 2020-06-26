@@ -90,7 +90,7 @@ Logged in users can see and comment posts created by their selves or by their fr
 
 ## About The Project
 
-The project creates a database which holds 3 tables:
+The project creates a database which holds 5 tables:
 
     - Users : Is the table containing the users' data  
       - Fields :  
