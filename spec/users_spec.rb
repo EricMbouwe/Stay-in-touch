@@ -9,14 +9,14 @@ RSpec.describe 'User', type: :model do
   it 'creates a friendship request' do
     user1 = User.first
     user2 = User.last
-    Friendship.create(user_id: user1.id, friend_id: user2.id, confirmed: false)
+    Friendship.create(user_id: user1.id, friend_id: user2.id, status: 0)
     expect(User.find(user1.friendships.first.friend_id).name).to eq('Eric')
   end
 
   it 'checks inverse friendship' do
     user1 = User.first
     user2 = User.last
-    Friendship.create(user_id: user1.id, friend_id: user2.id, confirmed: false)
+    Friendship.create(user_id: user1.id, friend_id: user2.id, status: 0)
     expect(User.find(user2.inverse_friendships.first.user_id).name).to eq('John')
   end
 
