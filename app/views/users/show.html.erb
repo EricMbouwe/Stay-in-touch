@@ -20,40 +20,52 @@
       <%= render @posts %>
     </ul>
   </article>
-
+  <hr/>
   <%# if @friends.count.positive? %>
     <div class="friends-div">
       <h4>Friends : <%= @friends.count %></h4>
       <% @friends.each do |f| %>
         <p>
-        <%= link_to f.name, user_path(f.id) %>
+        <% if current_user.friend_or_me?(f) %>
+          <%= link_to f.name, user_path(f.id) %>
+        <% else %>
+          <%= f.name %>
+        <% end %>
         </p>
       <% end %>
     </div>
   <%# end %>
-
+  <hr/>
   <%# if @pending_friends.count.positive? %>
     <div class="friends-div">
       <h4>Pending Friendships : <%= @pending_friends.count %></h4>
       <% @pending_friends.each do |f| %>
         <p>
-        <%= link_to f.name, user_path(f.id) %>
+        <% if current_user.friend_or_me?(f) %>
+          <%= link_to f.name, user_path(f.id) %>
+        <% else %>
+          <%= f.name %>
+        <% end %>
         </p>
       <% end %>
     </div>
   <%# end %>
-
+  <hr/>
   <%# if @pending_friends.count.positive? %>
     <div class="friends-div">
       <h4>Friendship Requests : <%= @friend_requests.count %></h4>
       <% @friend_requests.each do |f| %>
         <p>
-        <%= link_to f.name, user_path(f.id) %>
+        <% if current_user.friend_or_me?(f) %>
+          <%= link_to f.name, user_path(f.id) %>
+        <% else %>
+          <%= f.name %>
+        <% end %>
         </p>
       <% end %>
     </div>
   <%# end %>
-
+  <hr/>
 </section>
 
 

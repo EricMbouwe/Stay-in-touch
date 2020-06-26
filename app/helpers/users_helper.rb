@@ -3,7 +3,7 @@ module UsersHelper
     fl = []
     unless user == current_user
       if outer_status.nil?
-        fl = outer_status_nil(inner_status)
+        fl = outer_status_nil(user, inner_status)
       elsif outer_status.zero?
         fl << link_to('Accept', friendship_path(id: user.id, accept: true, caller: 'index'), method: :patch, class: 'profile-link accept')
         fl << link_to('Reject', friendship_path(id: user.id, accept: false, caller: 'index'), method: :patch, class: 'profile-link reject')
@@ -14,7 +14,7 @@ module UsersHelper
     fl
   end
 
-  def outer_status_nil(inner_status)
+  def outer_status_nil(user, inner_status)
     fl = []
     fl << link_to('Invite', friendships_path(user, caller: 'index'), method: :post, class: 'profile-link') if inner_status.nil?
     fl

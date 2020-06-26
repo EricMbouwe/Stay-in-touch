@@ -56,6 +56,12 @@ class User < ApplicationRecord
     friends.include?(user)
   end
 
+  def friend_or_me?(user)
+    return true if user == self
+
+    friends.include?(user)
+  end
+
   # def self.is_a_friend(id, user)
 
   #   fr = Friendship.find_by(user_id: user.id, friend_id: id, status: 1)
