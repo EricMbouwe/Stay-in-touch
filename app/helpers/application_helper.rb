@@ -15,4 +15,39 @@ module ApplicationHelper
       link_to('Like!', post_likes_path(post_id: post.id), method: :post)
     end
   end
+
+  def current_user_link
+    if current_user
+      return tag.div(link_to(current_user.name, user_path(current_user)) , class: 'menu-item')
+    end
+    nil
+  end
+
+  def sign_out_link
+    if current_user
+      return tag.div(link_to('Sign out', destroy_user_session_path, method: :delete) , class: 'menu-item')
+    end
+    nil
+  end
+
+  def sign_in_link
+    unless current_user
+      return tag.div(link_to('Sign in', user_session_path) , class: 'menu-item')
+    end
+    nil
+  end
+
+  def notice_message(notice)
+    if notice.present?
+      return tag.div(tag.p(notice), class: 'notice')
+    end
+    nil
+  end
+
+  def alert_message(alert)
+    if alert.present?
+      return tag.div(tag.p(alert), class: 'alert')
+    end
+    nil
+  end
 end

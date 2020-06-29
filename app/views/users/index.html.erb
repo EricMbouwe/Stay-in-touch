@@ -6,18 +6,14 @@
           <%= user.name %>
         </span>
         <span class="profile-link">
-          <% if current_user.friend?(user) %>
-            <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
-          <% else %>
-            <p class="profile-link gray">See Profile</p>
-          <% end %>
+          <%= profile_link(user) %>
         </span>
 
         <% ft = friendship_state(user, user.outer_status, user.inner_status) %>
         <% fl = friendship_links(user, user.outer_status, user.inner_status) %>
         <% ft.each do |t| %>
-          <span class="<%= t[:class] %>">
-            <%= t[:text]  %>
+          <span class=“profile-link”>
+            <%= t %>
           </span>
         <% end %>
         <% fl.each do |l| %>

@@ -9,8 +9,8 @@
   </head>
   <body>
     <nav class="nav">
-      <%= link_to 'Stay in touch', root_path %>
       <div class="menu">
+        <%= link_to 'Stay in touch', root_path %>
         <div class="menu-item">
           <%= menu_link_to 'Timeline', posts_path %>
         </div>
@@ -18,23 +18,17 @@
           <%= menu_link_to 'All users', users_path %>
         </div>
       </div>
-      <% if current_user %>
-        <%= link_to current_user.name, user_path(current_user) %>
-        <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
-      <% else %>
-        <%= link_to 'Sign in', user_session_path %>
-      <% end %>
+      
+      <div class="menu">
+        <%= current_user_link %>
+        <%= sign_out_link %>
+        <%= sign_in_link %>
+      </div>
+
     </nav>
-    <% if notice.present? %>
-      <div class="notice">
-        <p> <%= notice %> </p>
-      </div>
-    <% end %>
-    <% if alert.present? %>
-      <div class="alert">
-        <p> <%= alert %> </p>
-      </div>
-    <% end %>
+    
+    <%= notice_message(notice) %>
+    <%= alert_message(alert) %>
 
     <main class="main">
       <%= yield %>
