@@ -5,10 +5,12 @@ $primary-color: #8bc34a;
 $primary-color-light: #dcedc8;
 $primary-color-text: #212121;
 $divider-color: #bdbdbd;
-$accept-color: #173b9e;
-$reject-color: #bb0e0e;
-$pending-color: #045e26;
-$friends-color: #0d81a5;
+
+$accept-color: #0E43D3;
+$reject-color: #BB0E0E;
+$pending-color: #A2AEF7;
+$friends-color: #07789B;
+$gray-color-text: rgb(231, 229, 229);
 
 * {
   margin: 0;
@@ -302,38 +304,6 @@ form {
     width: 100px;
     margin: 0;
   }
-
-  .profile-link {
-    font-size: 0.9em;
-    margin: 0;
-    color: $primary-color-dark;
-    display: inline-block;
-    padding-bottom: 6px;
-  }
-
-  .accept {
-    font-size: 0.8em;
-    color: $accept-color;
-  }
-
-  .reject {
-    font-size: 0.8em;
-    color: $reject-color;
-  }
-
-  .pending {
-    font-size: 0.8em;
-    color: $pending-color;
-  }
-
-  .friends {
-    font-size: 0.8em;
-    color: $friends-color;
-  }
-
-  span {
-    margin-left: 20px;
-  }
 }
 
 .invite {
@@ -412,6 +382,44 @@ form {
   text-align: left;
 }
 
-.gray {
-  color: #777 !important;
+// new style
+
+.profile-link {
+  font-size: 0.9em;
+  margin: 0;
+  // color: $primary-color-dark;
+  display: inline-block;
+  width: 20%;
+
+  label {
+    font-size: 0.9em;
+  }
 }
+
+.link {
+  color: $primary-color-dark;
+}
+
+.user-name {
+  color: $primary-color-text;
+}
+
+.accept {
+  color: $accept-color;
+}
+.reject {
+  color: $reject-color;
+}
+
+.pending {
+  color: $pending-color;
+}
+
+.friends {
+  color: $friends-color;
+}
+
+.gray {
+  color: $gray-color-text;
+}
+

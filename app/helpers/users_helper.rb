@@ -32,8 +32,7 @@ module UsersHelper
   end
 
   def profile_link(user)
-    return link_to('See Profile',  user_path(user), class: 'profile-link') if current_user.friend_or_me?(user)
-    tag.p('See Profile', class: 'profile-link gray')
+    tag.span(link_to('See Profile',  user_path(user), class: 'link' ), class: 'profile-link')
   end
 
   def friend_link(user)
