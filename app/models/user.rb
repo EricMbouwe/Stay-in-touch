@@ -17,10 +17,9 @@ class User < ApplicationRecord
   # scope :my_friends, ->(user) { where (' ? = true '), is_a_friend(:id, user) }
 
   def friends
-    # friends_array = friendships.map { |f| f.friend if f.status == 1 }
+    friends_array = friendships.map { |f| f.friend if f.status == 1 }
     # friends_array += inverse_friendships.map { |f| f.user if f.status == 1 }
-    # friends_array.compact
-    friendships.map { |f| f.friend if f.status == 1 }
+    friends_array.compact
   end
 
   def friends_and_myself

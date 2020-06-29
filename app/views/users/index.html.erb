@@ -2,24 +2,18 @@
   <ul class="users-list">
     <% @users.each do |user| %>
       <li>
-        <span class="user-name">
+        <span class="profile-link user-name">
           <%= user.name %>
         </span>
-        <span class="profile-link">
-          <%= profile_link(user) %>
-        </span>
+        <%= profile_link(user) %>
 
-        <% ft = friendship_state(user, user.outer_status, user.inner_status) %>
-        <% fl = friendship_links(user, user.outer_status, user.inner_status) %>
+        <% ft = friendship_state(user, user.outer_status, user.inner_status, 'profile-link') %>
+        <% fl = friendship_links(user, user.outer_status, user.inner_status, 'profile-link', 'index') %>
         <% ft.each do |t| %>
-          <span class=“profile-link”>
-            <%= t %>
-          </span>
+          <%= t %>
         <% end %>
         <% fl.each do |l| %>
-          <span>
-            <%= l  %>
-          </span>
+          <%= l  %>
         <% end %>
 
       </li>
