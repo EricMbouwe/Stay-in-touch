@@ -303,6 +303,17 @@ form {
         right: 3px;
       }
     }
+
+    .post-comments-caption {
+      text-align: right;
+      padding: 0 6px;
+      color: #333;
+      font-weight: 200;
+
+      span {
+        margin-left: 10px;
+      }
+    }
   }
 }
 

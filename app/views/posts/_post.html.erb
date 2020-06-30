@@ -8,6 +8,7 @@
     <% if current_user.friend_or_me?(post.user) %>
       <div class='post-liking'>
         <%= like_or_dislike_btn(post) %>
+        <span><%= post.likes.count %></span>
       </div>
     <% end %>  
 
@@ -18,6 +19,7 @@
   </p>
 
   <div class='post-comments-section'>
+    <h4 class="post-comments-caption">Comments<span>(<%= post.comments.count %>)</span></h4>
     <% post.comments.each do |comment| %>
       <div class="post-comments">
         <p>
