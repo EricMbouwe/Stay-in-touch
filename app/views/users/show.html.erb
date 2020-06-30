@@ -34,10 +34,10 @@
   <hr/>
 
     <div class="friends-div">
-      <h4><%= pending_friends_caption(@pending_friends.count, current_user, @user) %></h4>
-      <% @pending_friends.each do |f| %>
+      <h4><%= pending_friends_caption(@pending_friendships.count, current_user, @user) %></h4>
+      <% @pending_friendships.each do |f| %>
         <p>
-        <%= link_to f.name, user_path(f.id), class: 'invite' %>
+        <%= link_to f.friend.name, user_path(f.friend.id), class: 'invite' %>
         </p>
       <% end %>
     </div>
@@ -45,15 +45,13 @@
   <hr/>
 
     <div class="friends-div">
-      <h4><%= friend_requests_caption(@friend_requests.count, current_user, @user) %></h4>
-      <% @friend_requests.each do |f| %>
+      <h4><%= friend_requests_caption(@friendship_requests.count, current_user, @user) %></h4>
+      <% @friendship_requests.each do |f| %>
         <p>
-        <%= link_to f.name, user_path(f.id), class: 'invite' %>
+        <%= link_to f.user.name, user_path(f.user.id), class: 'invite' %>
         </p>
       <% end %>
     </div>
 
   <hr/>
 </section>
-
-

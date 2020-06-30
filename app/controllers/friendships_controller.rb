@@ -6,15 +6,12 @@ class FriendshipsController < ApplicationController
     accept = params[:accept] == 'true'
     caller = params[:caller]
 
-    # current_user.confirm_friend(user) if accept
-    # current_user.reject_friend(user) unless accept
-
     friendship = Friendship.find_by("friend_id = #{current_user.id} AND user_id = #{user_id}")
     friendship.confirm_friend if accept
 
     friendship.reject_friend unless accept
-    # friendship.status = accept ? 1 : -1
-    # friendship.save
+
+    flash.notice = current_user.name + (accept ? ' accepted ' : ' rejected ') + user.name
 
     redirect_to users_path if caller == 'index'
     redirect_to user_path(user_id) if caller == 'show'
