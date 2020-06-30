@@ -46,18 +46,18 @@ class User < ApplicationRecord
     inverse_friendships.map { |f| f.user if f.status.zero? }.compact
   end
 
-  def confirm_friend(user)
-    inverse_friendship = inverse_friendships.find { |f| f.user == user }
-    inverse_friendship.status = 1
-    inverse_friendship.save
-    friendships.create(friend_id: user.id, status: 1)
-  end
+  # def confirm_friend(user)
+  #   inverse_friendship = inverse_friendships.find { |f| f.user == user }
+  #   inverse_friendship.status = 1
+  #   inverse_friendship.save
+  #   friendships.create(friend_id: user.id, status: 1)
+  # end
 
-  def reject_friend(user)
-    inverse_friendship = inverse_friendships.find { |f| f.user == user }
-    inverse_friendship.status = -1
-    inverse_friendship.save
-  end
+  # def reject_friend(user)
+  #   inverse_friendship = inverse_friendships.find { |f| f.user == user }
+  #   inverse_friendship.status = -1
+  #   inverse_friendship.save
+  # end
 
   def friend?(user)
     friends.include?(user)
