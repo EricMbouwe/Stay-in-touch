@@ -39,7 +39,6 @@ This milestone 5 presents the Friendships functionality for a social media appli
     <br />
     <br />
     <a href="https://blooming-meadow-82208.herokuapp.com">View Demo</a>
-    [![Heroku](https://pyheroku-badge.herokuapp.com/?app=blooming-meadow-82208)](https://blooming-meadow-82208.herokuapp.com)
     <a href="https://github.com/ericmbouwe/Stay-in-touch/issues">Report Bug</a>
     <a href="https://github.com/ericmbouwe/Stay-in-touch/issues">Request Feature</a>
   </p>
