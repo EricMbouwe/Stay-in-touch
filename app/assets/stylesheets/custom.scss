@@ -5,10 +5,11 @@ $primary-color: #8bc34a;
 $primary-color-light: #dcedc8;
 $primary-color-text: #212121;
 $divider-color: #bdbdbd;
-$accept-color: #173b9e;
-$reject-color: #bb0e0e;
-$pending-color: #045e26;
-$friends-color: #0d81a5;
+$gray-color-text: rgb(231, 229, 229);
+$accept-color: #0E43D3;
+$reject-color: #BB0E0E;
+$pending-color: #A2AEF7;
+$friends-color: #07789B;
 
 * {
   margin: 0;
@@ -40,15 +41,22 @@ ul {
 
 a {
   text-decoration: none;
-  color: $primary-color-text;
+}
+
+.btn {
+  font-size: 0.9em;
 }
 
 .nav {
   display: flex;
+  position: sticky;
+  top: 0;
   justify-content: space-between;
   padding: 16px 48px;
   background-color: $primary-color-dark;
   color: $primary-color-light;
+  margin: 0;
+  z-index: 10;
 
   a {
     color: $primary-color-light;
@@ -65,11 +73,10 @@ a {
   }
 
   .menu {
-    width: 80%;
+    display: flex;
     justify-content: space-between;
 
     .menu-item {
-      float: left;
       margin: 0 15px;
     }
   }
@@ -124,6 +131,7 @@ a {
     padding: 8px;
     margin: 4px 0;
     border-radius: 4px;
+    font-size: 1em;
   }
 
   .field_with_errors {
@@ -224,6 +232,16 @@ form {
     margin: 16px 0;
     display: flex;
     flex-direction: column;
+    background-color: #ccc;
+    padding: 20px;
+    border-radius: 6px;
+  }
+
+  .post-top {
+    background-color: #eee;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 10px;
   }
 
   .post-attribution {
@@ -233,6 +251,12 @@ form {
       margin: 0 0 8px 0;
       color: $primary-color-dark;
       text-transform: capitalize;
+    }
+
+    span {
+      font-size: 0.9em;
+      margin-right: 10px;
+      color: $friends-color;
     }
   }
 
@@ -254,6 +278,7 @@ form {
   .post-content {
     font-size: 1.1em;
     padding: 4px 0;
+    color: $friends-color;
   }
 
   .post-comments-section {
@@ -270,14 +295,23 @@ form {
       padding: 10px;
 
       p {
-        font-size: 0.8em;
-        width: 90%;
+        width: calc(100% - 100px);
       }
 
       span {
         position: absolute;
         right: 3px;
-        font-size: 0.6em;
+      }
+    }
+
+    .post-comments-caption {
+      text-align: right;
+      padding: 0 6px;
+      color: #333;
+      font-weight: 200;
+
+      span {
+        margin-left: 10px;
       }
     }
   }
@@ -293,49 +327,16 @@ form {
     font-size: 1.2em;
     border-bottom: 1px solid;
   }
-  
+
   .user-name {
     display: inline-block;
     width: 100px;
     margin: 0;
   }
-
-  .profile-link {
-    font-size: 0.9em;
-    margin: 0 0 0 0;
-    color: $primary-color-dark;
-    display: inline-block;
-    width: 100px;
-    padding-bottom: 6px;
-  }
-
-  .accept {
-    font-size: 0.8em;
-    color: $accept-color;
-  }
-
-  .reject {
-    font-size: 0.8em;
-    color: $reject-color;
-  }
-
-  .pending {
-    font-size: 0.8em;
-    color: $pending-color;
-  }
-
-  .friends {
-    font-size: 0.8em;
-    color: $friends-color;
-  }
-
-  span {
-    margin-left: 20px;
-  }
 }
 
 .invite {
-  color: $primary-color;
+  color: $primary-color-dark;
 }
 
 .user-section {
@@ -394,14 +395,14 @@ form {
   }
 }
 
-// span {
-//   margin-left: 20px;
-//   margin-right: 20px;
-// }
-
 .user-invitation {
   display: block;
   float: right;
+  font-size: 0.7em;
+
+  a {
+    margin-left: 20px;
+  }
 }
 
 .friends-div,
@@ -410,6 +411,41 @@ form {
   text-align: left;
 }
 
+.profile-link {
+  font-size: 0.9em;
+  margin: 0;
+  display: inline-block;
+  width: 20%;
+
+  label {
+    font-size: 0.9em;
+  }
+}
+
+.link {
+  color: $primary-color-dark;
+}
+
+.user-name {
+  color: $primary-color-text;
+}
+
+.accept {
+  color: $accept-color;
+}
+
+.reject {
+  color: $reject-color;
+}
+
+.pending {
+  color: $pending-color;
+}
+
+.friends {
+  color: $friends-color;
+}
+
 .gray {
-  color: #777 !important;
+  color: $gray-color-text;
 }

@@ -2,16 +2,16 @@
   <h2>
     <%= @user.name %> 
     <% unless @user == current_user %>
-      <span class="user-invitation">
-        <% if @status.nil? %>
-          <%= link_to 'Invite',  friendships_path(@user, caller: 'show'), method: :post, class: 'profile-link invite' %>
-        <% elsif @status == 'Deciding' %>
-          <%= link_to 'Accept', friendship_path(id: @user.id, accept: true, caller: 'show' ), method: :patch, class: 'profile-link accept' %>
-          <%= link_to 'Reject', friendship_path(id: @user.id, accept: false, caller: 'show' ), method: :patch, class: 'profile-link reject' %>
-        <% else %>
-          <%= @status %>
-        <% end %>
-      </span>
+        <div class="user-invitation">
+          <% ft = friendship_state(@user, @outer_status, @inner_status, '') %>
+          <% fl = friendship_links(@user, @outer_status, @inner_status, '', 'show') %>
+          <% ft.each do |t| %>
+            <%= t %>
+          <% end %>
+          <% fl.each do |l| %>
+            <%= l  %>
+          <% end %>
+        </div>
     <% end %>
   </h2>
   <article class="timeline">
@@ -21,51 +21,37 @@
     </ul>
   </article>
   <hr/>
-  <%# if @friends.count.positive? %>
+
     <div class="friends-div">
       <h4>Friends : <%= @friends.count %></h4>
       <% @friends.each do |f| %>
         <p>
-        <% if current_user.friend_or_me?(f) %>
-          <%= link_to f.name, user_path(f.id) %>
-        <% else %>
-          <%= f.name %>
-        <% end %>
+        <%= link_to f.name, user_path(f.id), class: 'invite' %>
         </p>
       <% end %>
     </div>
-  <%# end %>
+
   <hr/>
-  <%# if @pending_friends.count.positive? %>
+
     <div class="friends-div">
-      <h4>Pending Friendships : <%= @pending_friends.count %></h4>
-      <% @pending_friends.each do |f| %>
+      <h4><%= pending_friends_caption(@pending_friendships.count, current_user, @user) %></h4>
+      <% @pending_friendships.each do |f| %>
         <p>
-        <% if current_user.friend_or_me?(f) %>
-          <%= link_to f.name, user_path(f.id) %>
-        <% else %>
-          <%= f.name %>
-        <% end %>
+        <%= link_to f.friend.name, user_path(f.friend.id), class: 'invite' %>
         </p>
       <% end %>
     </div>
-  <%# end %>
+
   <hr/>
-  <%# if @pending_friends.count.positive? %>
+
     <div class="friends-div">
-      <h4>Friendship Requests : <%= @friend_requests.count %></h4>
-      <% @friend_requests.each do |f| %>
+      <h4><%= friend_requests_caption(@friendship_requests.count, current_user, @user) %></h4>
+      <% @friendship_requests.each do |f| %>
         <p>
-        <% if current_user.friend_or_me?(f) %>
-          <%= link_to f.name, user_path(f.id) %>
-        <% else %>
-          <%= f.name %>
-        <% end %>
+        <%= link_to f.user.name, user_path(f.user.id), class: 'invite' %>
         </p>
       <% end %>
     </div>
-  <%# end %>
+
   <hr/>
 </section>
-
-
