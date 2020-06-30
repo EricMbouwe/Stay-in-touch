@@ -7,9 +7,9 @@ class FriendshipsController < ApplicationController
     caller = params[:caller]
 
     friendship = Friendship.find_by("friend_id = #{current_user.id} AND user_id = #{user_id}")
-    friendship.confirm_friend if accept
+    friendship.confirm if accept
 
-    friendship.reject_friend unless accept
+    friendship.reject unless accept
 
     flash.notice = current_user.name + (accept ? ' accepted ' : ' rejected ') + user.name
 
@@ -22,7 +22,7 @@ class FriendshipsController < ApplicationController
     user = User.find(user_id)
     caller = params[:caller]
 
-    current_user.friendships.create(friend_id: user_id)
+    current_user.invite(user)
 
     flash.notice = current_user.name + ' invited ' + user.name
 

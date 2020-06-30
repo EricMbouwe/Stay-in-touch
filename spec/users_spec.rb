@@ -13,11 +13,16 @@ RSpec.describe 'User', type: :model do
     expect(User.find(user1.friendships.first.friend_id).name).to eq('Eric')
   end
 
+  it 'tries to add a user without email and fails' do
+    user3 = User.create(name: 'kilyan', password: 'abc123')
+    expect(user3.valid?).to be(false)
+  end
+
   it 'checks inverse friendship' do
     user1 = User.first
     user2 = User.last
     Friendship.create(user_id: user1.id, friend_id: user2.id, status: 0)
-    expect(User.find(user2.inverse_friendships.first.user_id).name).to eq('John')
+    expect(User.find(user2.friendship_requests.first.user_id).name).to eq('John')
   end
 
   it 'creates post by user' do

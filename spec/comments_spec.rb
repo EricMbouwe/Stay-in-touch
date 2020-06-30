@@ -14,6 +14,13 @@ RSpec.describe 'Post', type: :model do
     expect(Post.first.comments.first.content).to eq('comments for post 1 by user 2')
   end
 
+  it ' does not creates a comment for the first post without content' do
+    user1 = User.first
+    user2 = User.last
+    comment = user2.comments.create(post_id: user1.posts.first.id)
+    expect(comment.valid?).to be(false)
+  end
+
   it 'counts the comments for the first post of user 2' do
     user1 = User.first
     user2 = User.last

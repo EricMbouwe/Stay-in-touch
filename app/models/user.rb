@@ -24,7 +24,7 @@ class User < ApplicationRecord
 
   def friends_and_myself_ids
     friends_array = [id]
-    friends_array += friends.map { |f| f.id }
+    friends_array += friends.map(&:id)
     friends_array.compact
   end
 
@@ -36,5 +36,9 @@ class User < ApplicationRecord
     return true if user == self
 
     friends.include?(user)
+  end
+
+  def invite(user)
+    friendships.create(friend_id: user.id, status: 0)
   end
 end
