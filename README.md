@@ -136,7 +136,7 @@ The project creates a database which holds 5 tables:
 <!-- ABOUT THE PROJECT -->
 ## Live version
 
-You can see it working [![Heroku](https://pyheroku-badge.herokuapp.com/?app=blooming-meadow-82208](https://blooming-meadow-82208.herokuapp.com)
+You can see it working [![Heroku](https://pyheroku-badge.herokuapp.com/?app=blooming-meadow-82208)](https://blooming-meadow-82208.herokuapp.com)
 
 ## Application Instructions
 
