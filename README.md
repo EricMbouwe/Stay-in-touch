@@ -38,6 +38,7 @@ This milestone 5 presents the Friendships functionality for a social media appli
     <a href="https://github.com/ericmbouwe/Stay-in-touch"><strong>Explore the docs »</strong></a>
     <br />
     <br />
+    <a href="https://blooming-meadow-82208.herokuapp.com">View Demo</a>
     <a href="https://github.com/ericmbouwe/Stay-in-touch/issues">Report Bug</a>
     <a href="https://github.com/ericmbouwe/Stay-in-touch/issues">Request Feature</a>
   </p>
@@ -76,6 +77,7 @@ Logged in users can see and comment posts created by their selves or by their fr
 ## Table of Contents
 
 - [About the Project](#about-the-project)
+- [Live Version](#live-version)
 - [Application Instructions](#application-instructions)
 - [System Requierments](#system-requierments)
 - [Dependencies](#dependencies)
@@ -132,6 +134,9 @@ The project creates a database which holds 5 tables:
 <hr/>
 
 <!-- ABOUT THE PROJECT -->
+## Live version
+
+You can see it working [![Heroku](https://blooming-meadow-82208.herokuapp.com)](https://blooming-meadow-82208.herokuapp.com)
 
 ## Application Instructions
 
